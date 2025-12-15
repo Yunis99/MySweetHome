@@ -3,6 +3,7 @@
  * @brief Implementation of Notification System
  * @authors
  * - 220201023: Notification System & Integration
+ * 
  * @patterns Strategy, Observer (Observer impl)
  */
 
@@ -20,8 +21,8 @@ void NotificationSystem::notify(const std::string& message) {
     std::cout << "[NOTIFY] System Message: " << message << std::endl;
 }
 
-void NotificationSystem::onDeviceFailure(const std::string& deviceName, const std::string& message) {
-    std::string fullMsg = "Device " + deviceName + ": " + message;
+void NotificationSystem::update(Device* device, const std::string& message) {
+    std::string fullMsg = "Device " + device->getName() + ": " + message;
     notify(fullMsg);
 }
 
