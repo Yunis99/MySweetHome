@@ -1,0 +1,32 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master", "main", "version-*" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config Release
+
+    - name: Verify Executable
+      run: |
+        if [ -f "${{github.workspace}}/build/bin/msh" ]; then
+          echo "Executable 'msh' created successfully."
+        elif [ -f "${{github.workspace}}/build/msh" ]; then
+          echo "Executable 'msh' created successfully."
+        else
+          echo "Executable not found!"
+          exit 1
+        fi
