@@ -1,11 +1,3 @@
-/**
- * @file NotificationSystem.h
- * @authors
- * - 220201013: Notification System & Integration
- * 
- * @patterns Strategy, Observer (Observer impl)
- */
-
 #ifndef NOTIFICATIONSYSTEM_H
 #define NOTIFICATIONSYSTEM_H
 
@@ -20,7 +12,7 @@ public:
     void notify(const std::string& message);
     
     // Observer update method
-    virtual void onDeviceFailure(const std::string& deviceName, const std::string& message);
+    virtual void update(Device* device, const std::string& message);
     
     void displayStatus() const;
 };
